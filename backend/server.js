@@ -4,12 +4,14 @@ const connectDB = require("./config/connectDB");
 // const mongoose = require("mongoose");
 const Task = require("./models/taskModel");
 const taskRoutes = require("./routes/taskRoute");
+const cors = require("cors");
 
 const app = express();
 
 // Middleware (must call the next function to give the next func to run)
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors()); // necessary for the frontend to share resources with the backend
 app.use("/api/tasks/", taskRoutes);
 
 // Routes
